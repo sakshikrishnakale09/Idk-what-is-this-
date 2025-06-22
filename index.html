@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Sweetheart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      background: #fff0f5;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .btn {
+      background: pink;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px pink;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 20px pink; }
+      50% { box-shadow: 0 0 40px deeppink; }
+    }
+
+    #music {
+      display: none;
+    }
+
+    .heart-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      transform: translate(-50%, -50%);
+      display: none;
+      animation: fadeIn 2s forwards;
+    }
+
+    .heart-container img {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 20px;
+      opacity: 0;
+      animation: appear 0.5s forwards;
+    }
+
+    @keyframes appear {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .ily-text {
+      position: absolute;
+      top: 5%;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-family: 'Great Vibes', cursive;
+      color: white;
+      text-shadow: 0 0 10px pink, 0 0 20px deeppink;
+      opacity: 0;
+      animation: typewriter 4s steps(30) 1s forwards;
+    }
+
+    @keyframes typewriter {
+      from { width: 0; opacity: 1; }
+      to { width: 100%; opacity: 1; }
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      box-shadow: 0 0 8px white;
+      border-radius: 50%;
+      animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="center" id="page1">
+  <button class="btn" onclick="goToPage2()">Sorry</button>
+  <p style="margin-top: 10px; font-size: 14px; color: gray;">Tap on Sorry</p>
+</div>
+
+<div class="center" id="page2" style="display: none;">
+  <button class="btn" onclick="goToPage3()">Are you ready?</button>
+</div>
+
+<div id="page3" style="display: none;">
+  <audio id="music" autoplay>
+    <source src="https://files.catbox.moe/pjmxo8.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="stars" id="stars"></div>
+  <div class="ily-text">I love you sweetheart forever</div>
+  <div class="heart-container" id="heart"></div>
+</div>
+
+<script>
+  const imageUrls = [
+    "https://i.ibb.co/ZvsszqY/74022-DD7-8-A77-499-B-AD48-B434418-A07-DF.png",
+    "https://i.ibb.co/mr8Ts3bj/IMG-3713.jpg",
+    "https://i.ibb.co/212dc58G/IMG-3682.jpg",
+    "https://i.ibb.co/JFnRgvhn/IMG-2265.jpg",
+    "https://i.ibb.co/6RxyqmsJ/IMG-2259.jpg",
+    "https://i.ibb.co/N286QdRW/IMG-1840.jpg",
+    "https://i.ibb.co/6JqB9yNG/IMG-1167.jpg",
+    "https://i.ibb.co/sp4DqPVw/061a4f7e-769b-4a75-9093-cf1f3b7dfc33.jpg",
+    "https://i.ibb.co/fYdXsGmc/3d7ad99c-f7b5-4f91-ab90-059b6d784041.jpg",
+    "https://i.ibb.co/WNkmFts1/IMG-8588.jpg",
+    "https://i.ibb.co/PG42RPLX/IMG-8587.jpg",
+    "https://i.ibb.co/Ng6mBp3Q/3-FAA830-C-C295-4319-BEAA-A0-FEB5-BF62-AC.jpg",
+    "https://i.ibb.co/JWgtvPLJ/939b3a43-cfeb-4486-a9b0-dc0daca955eb.jpg",
+    "https://i.ibb.co/qYyk5Cgd/IMG-4088.jpg",
+    "https://i.ibb.co/Kpm8Lf4x/IMG-4085.jpg",
+    "https://i.ibb.co/nNRG3vCc/IMG-2256.jpg",
+    "https://i.ibb.co/chs0BxfP/IMG-2263.jpg",
+    "https://i.ibb.co/dYgJZqF/IMG-1109.jpg",
+    "https://i.ibb.co/xq4WJQvD/3293e8ec-0ace-4f9b-a5b8-198f2957542e.jpg",
+    "https://i.ibb.co/BKjPRcdc/95648506-2903-4483-8b76-ee72e99a6cf3.jpg"
+  ];
+
+  function goToPage2() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+  }
+
+  function goToPage3() {
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "block";
+
+    const music = document.getElementById("music");
+    music.play();
+
+    const heart = document.getElementById("heart");
+    let angle = 0;
+    let step = (2 * Math.PI) / imageUrls.length;
+    let r = 120;
+
+    imageUrls.forEach((url, i) => {
+      let x = 200 + r * 16 * Math.pow(Math.sin(angle), 3);
+      let y = 200 - r * (13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+      let img = document.createElement("img");
+      img.src = url;
+      img.style.left = x + "px";
+      img.style.top = y + "px";
+      img.style.animationDelay = (i * 0.3) + "s";
+      heart.appendChild(img);
+      angle += step;
+    });
+
+    // Add glowing stars
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      document.getElementById("stars").appendChild(star);
+    }
+  }
+</script>
+</body>
+</html>
